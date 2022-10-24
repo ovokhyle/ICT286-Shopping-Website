@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">	
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+	
+<title>Assignment 2 Home Page</title>
+
+</head>
+<body>
+
+<header>
+  <h1></h1>STUDENT TECH</h1>
+  <h4 id="welcome">Logged In</h4>
+  <h4 id="wrong">Wrong Username or Password</h4>
+  <h4 id="taken">Username taken. Please enter a different one</h4>
+  <h4 id="success">Sign up successful. Welcome.</h4>
+</header>
+
+<div class="navigation" id="navbar">
+<ul class="menu"> 
+  <li><a class="active" href="home">Home</a></li>
+  <li><a href="phone" onclick="displayPhone();">Phones</a></li>
+  <li><a href="laptop" onclick="displayLaptop();">Laptops</a></li>
+  <li><a href="tablet" onclick="displayTablet();">Tablets</a></li>
+</ul>
+
+<div class="right-menu">
+ 
+   <div class="dropdown">
+   <a href="#" id="accountbtn" class="dropbtn">My Account</a>
+    <div class="dropdown-content">
+	<a href="account" id="editact" onclick="UpdateAccount();">Edit Account</a>
+	<a href="addproduct" id="addprod">Add Products</a>	
+ 	<a href="customeract" id="editcustomer">Edit Customer Account</a>
+        <a href="addstaff" id="addstaffbtn">Add Staff</a>
+	<a href="updateproduct" id="updateprod">Update Products</a>
+	<a href="deleteproduct" id="deleteprod">Delete Products</a>
+    </div>
+    </div>
+	
+    <a href="cart" id="total"></a>
+	
+    <a href="cart" id="cartbtn" onclick="displayCart();">	
+        <i class="glyphicon glyphicon-shopping-cart"></i>
+    </a>
+   
+    <input type="text" href="searchpage" id="search" placeholder="Search..." onsubmit="return false" onkeyup="search();">
+    <button type="button" href="searchpage" id="searchbtn" onclick="search();"><i class="glyphicon glyphicon-search"></i></button>
+
+    <i id="usericon" style="color:white" onclick="document.getElementById('login').style.display='inline-block'" class="glyphicon glyphicon-user"></i>
+
+    <a href="home.html" id="logoutbtn" onclick="logout();">Logout</a>
+
+</div>
+</div>
+
+<form onsubmit="AccountLogin(); document.getElementById('login').style.display='none'; return false;">
+<div class="form" id="login">
+	<div class="login-form">
+
+		<a href="#" class="form-cancel">
+			<i onclick="document.getElementById('login').style.display='none'" class="glyphicon glyphicon-remove"></i>
+		</a>
+		
+		<h3>Log In</h3>
+		<form>
+			<input type="text" placeholder="Username" id="username" onsubmit="return false" required>
+			<input type="password" placeholder="Password" id="password" required>
+			<input type="submit" value="Log In" id="logsubbut">
+		</form>
+	<div class="form-buttons">
+		<a href="#" class="signup" onclick="document.getElementById('signup').style.display='inline-block'; document.getElementById('login').style.display='none'">Create Account</a>		
+		<a href="#" class="forgot">Forgot your password?</a>
+	</div>
+	</div>
+</div>
+</form>
+
+<form onsubmit="signUp(); document.getElementById('signup').style.display='none'; return false">
+<div class="form" id="signup">
+	<div class="signup-form">
+
+		<a href="#" class="form-cancel">
+			<i onclick="document.getElementById('signup').style.display='none'" class="glyphicon glyphicon-remove"></i>
+		</a>
+		
+		<h3>Sign Up</h3>
+		<form>
+			<input type="text" placeholder="Name" id="sname" onsubmit="return false" required>
+			<input type="text" placeholder="Username" id="susername" onsubmit="return false" required>
+			<input type="password" placeholder="Password" id="spassword" required>
+			<input type="submit" value="Sign Up">
+		</form>
+	<div class="form-buttons">
+		<a href="#" class="signup" onclick="document.getElementById('login').style.display='inline-block'; document.getElementById('signup').style.display='none'">Already Have an Account?</a>		
+	</div>
+</div>
+</div>
+</form>
+
+<article id="home">
+<div class="item-container" id="container"></div>
+</article>
+
+<article id="contact" hidden="hidden">
+	<h1>Contact Us</h1>
+	<div class="column middle">
+		<h2>Address: 4 Oak St., Cannington Western Australia 6107<img src="images/location.jpg" style="float:center; width:50px; height:50px;"></h2>
+		<h2>Contact No: 0481 900 555 <img src="images/phone.jpg" style="float:center; width:50px; height:50px;"></h2>
+		<h2>Email address: studenttech@gmail.com <img src="images/gmail.jpg" style="float:center; width:60px; height:40px"</h2>
+	</div>
+</article>
+
+<article id="about" hidden="hidden">
+	<h1>About Us</h1>
+	<div class="column middle">
+		<h2> Student Tech is a growing business whose main goal is to make technology more affordable to students
+ 		and education institutes in Australia and around the world by selling high-end technology at reasonable prices.</h2>
+		<h2>Students can get a 15% discount by providing their valid student ID <img src="images/id.jpg" style="float:center; width:70px; height:50px;"</h2>
+		<h2>Support our Charity</h2>	
+		<img src="images/charity.jpg" style="float:center; width: 50px; height: 50px;">
+		<br>	
+		<a href="#">STFoundation.org</a>
+		<h2>STFoundation is a not-for-profit organisation that uses its proceeds to provide shelter to the homeless,
+		relieve hunger, provide emergency relief, and issue scholarships to those who can't afford an education.</h2>
+	</div>
+</article>
+
+<article id="searchpage" hidden="hidden">
+<div class="item-container" id="searchcontainer">
+	<h1>Search</h1>
+</div>
+</article>
+
+<article id="help" hidden="hidden">
+        <i class="glyphicon glyphicon-arrow-up" style="left:100px; font-size: 30px;"></i>
+	<i class="glyphicon glyphicon-arrow-up" style="left:1300px; font-size:30px;"></i>
+	<h1>Help</h1>
+	<div class="column middle">
+	<h4><i class="glyphicon glyphicon-arrow-right"></i>Our website consists of technology that would provide students help with their study</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To view all our products: select Home on the top left in the navigation bar</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To view our selection of Phones: click on the Phones link next to Home</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To view our selection of Laptops: click on the Laptops link next to Phones</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To view our selection of Tablets: click on the Tablets link next to Laptops</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To search for a specific product: type on the search text box on the top right corner in the navigation bar and click the search button/enter</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To Log In to your account: select the user icon next to the search button</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To Sign Up for an account: select create account under the Log In button in the LogIn form</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To add an item to the shopping cart: select the shopping cart icon on the top left on an item box</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To view the products in your shopping cart: select the shopping cart icon next to the user icon in the top right of the navigation bar</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To view your account: Once you're logged in, select any of the dropdowns in My Account (next to the search box) to access specific actions</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To Log Out of your account: Click the log out button next to the shopping cart icon</h4>
+	<h4><i class="glyphicon glyphicon-arrow-right"></i> To see more about us you can select the About Us, Contact Us, or Help section in the footer of the page</h4>
+	<i class="glyphicon glyphicon-arrow-down" style="right:750px; font-size: 30px;"></i>	
+	</div>
+</article>
+
+<article id="phone" hidden="hidden">
+<div class="item-container" id="phonecontainer" onload="displayPhone();">
+</div>
+</article>
+
+<article id="laptop" hidden="hidden">
+<div class="item-container" id="laptopcontainer" onload="displayLaptop();">
+</div>
+</article>
+
+<article id="tablet" hidden="hidden">
+<div class="item-container" id="tabletcontainer" onload="displayTablet();">
+</div>
+</article>
+
+<article id="cart" hidden="hidden">
+<div class="shopping-cart" id="cartcontainer">
+</div>
+<div class="shopping-cart" id="Order">
+	<button type="button" onsubmit="return false" onclick="order();"id="Checkout">Checkout</button>
+</div>
+</article>
+
+<article id="account" hidden="hidden">
+<h1>My Account</h1>
+<div class="container" id="myaccount">
+<form onsubmit="return false;">
+	<div class="row">
+	<div class="labels"><label for="username">Username:</label></div>
+	<div class="inputs"><input type="text" id="upusername" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="password">Password:</label></div>
+	<div class="inputs"><input type="text" id="uppassword" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="name">Name:</label></div>
+	<div class="inputs"><input type="text" id="name" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="address">Address:</label></div>
+	<div class="inputs"><input type="text" id="address" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="number">Phone Number:</label></div>
+	<div class="inputs"><input type="text" id="number" required size="30" onsubmit="return false" /></div>	
+	</div>
+	<div class="row">
+	<div class="labels"><label for="email">Email:</label></div>
+	<div class="inputs"><input type="text" id="email"  required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<br>
+	<input type="button" id="update" style="float:right" value="Update" onclick="ApplyUpdate();"/>
+	</div>
+	
+</form>
+</div>
+</article>
+
+<article id="addproduct" hidden="hidden">
+<h1> Add Products </h1>
+<div class="container" id="addproductcontainer">
+<form onsubmit="return false;">
+	<div class="row">
+	<div class="labels"><label for="productid">Product ID:</label></div>
+	<div class="inputs"><input type="text" id="prodid" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="productname">Product Name:</label></div>
+	<div class="inputs"><input type="text" id="prodname" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="price">Price:</label></div>
+	<div class="inputs"><input type="text" id="price" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="image">Image URL:</label></div>
+	<div class="inputs"><input type="text" id="image" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="category">Category:</label></div>
+	<div class="inputs"><input type="text" id="category" required size="30" onsubmit="return false" /></div>	
+	</div>
+	<div class="row">
+	<div class="labels"><label for="stock">Stock:</label></div>
+	<div class="inputs"><input type="text" id="stock"  required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<br>
+	<input type="button" id="add" style="float:right" value="Add" onclick="AddProduct();"/>
+	</div>
+	
+	</div>
+</form>
+</article>
+
+<article id="addstaff" hidden="hidden">
+<h1>Add Staff Account</h1>
+<div class="container" id="staffaccountcontainer">
+<form onsubmit="return false;">
+	<div class="row">
+	<div class="labels"><label for="username">Username:</label></div>
+	<div class="inputs"><input type="text" id="staffusername" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="password">Password:</label></div>
+	<div class="inputs"><input type="text" id="staffpassword" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="name">Name:</label></div>
+	<div class="inputs"><input type="text" id="staffname" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="address">Address:</label></div>
+	<div class="inputs"><input type="text" id="staffaddress" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="number">Phone Number:</label></div>
+	<div class="inputs"><input type="text" id="staffnumber" required size="30" onsubmit="return false" /></div>	
+	</div>
+	<div class="row">
+	<div class="labels"><label for="email">Email:</label></div>
+	<div class="inputs"><input type="text" id="staffemail"  required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<br>
+	<input type="button" id="addstaffbutton" style="float:right" value="Add" onclick="AddStaff();"/>
+	</div>
+	
+</form>
+</div>
+</article>
+
+<article id="customeract" hidden="hidden">
+<h1>Edit Customer/Staff Account</h1>
+<div class="container" id="customeracount">
+<h4>Please enter a customer/staff username to edit</h4>
+<form onsubmit="return false;">
+	<div class="row">
+	<div class="labels"><label for="username">Username:</label></div>
+	<div class="inputs"><input type="text" id="custusername" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<br>
+	<input type="button" id="searchcustomer" style="float:right" value="Search" onclick="FillDetails();"/>
+	</div>
+	<div class="row">
+	<br>	
+	</div>
+	<div class="row">
+	<div class="labels"><label for="password" id="custpasslabel">Password:</label></div>
+	<div class="inputs"><input type="text" id="custpassword" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="name" id="custuselabel">Name:</label></div>
+	<div class="inputs"><input type="text" id="custname" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="address" id="custaddresslabel">Address:</label></div>
+	<div class="inputs"><input type="text" id="custaddress" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="number" id="custphonelabel">Phone Number:</label></div>
+	<div class="inputs"><input type="text" id="custnumber" required size="30" onsubmit="return false" /></div>	
+	</div>
+	<div class="row">
+	<div class="labels"><label for="email" id="custemaillabel">Email:</label></div>
+	<div class="inputs"><input type="text" id="custemail"  required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<br>
+	<input type="button" id="updatecust" style="float:right" value="Update" onclick="UpdateCustomer();"/>
+	</div>
+	
+</form>
+</div>
+</article>
+
+<article id="deleteproduct" hidden="hidden">
+<h1>Delete Product</h1>
+<div class="container" id="deleteproductcontainer">
+<form onsubmit="return false;">
+	<div class="row">
+	<h4>Please enter a ProductID to delete: </h4>
+	<div class="labels"><label for="username">ProductID: </label></div>
+	<div class="inputs"><input type="text" id="delproductid" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<br>
+	<input type="button" id="deleteproduct" style="float:right" value="Delete" onclick="DeleteProduct();"/>
+	</div>
+	</div>
+	
+</form>
+</div>
+</article>
+
+<article id="updateproduct" hidden="hidden">
+<h1> Update Products </h1>
+<div class="container" id="updateproductcontainer">
+<h4>Please enter a ProductID to Update</h4>
+<form onsubmit="return false;">
+	<div class="row">
+	<div class="labels"><label for="productid">Product ID:</label></div>
+	<div class="inputs"><input type="text" id="prodidupdt" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<br>
+	<input type="button" id="searchproduct" style="float:right" value="Search" onclick="ProductDetails();"/>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="productname" id="prodnamelabel">Product Name:</label></div>
+	<div class="inputs"><input type="text" id="prodnameupdt" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="price" id="pricelabel">Price:</label></div>
+	<div class="inputs"><input type="text" id="priceupdt" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="image" id="imagelabel">Image URL:</label></div>
+	<div class="inputs"><input type="text" id="imageupdt" required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<div class="labels"><label for="category" id="categorylabel">Category:</label></div>
+	<div class="inputs"><input type="text" id="categoryupdt" required size="30" onsubmit="return false" /></div>	
+	</div>
+	<div class="row">
+	<div class="labels"><label for="stock" id="stocklabel">Stock:</label></div>
+	<div class="inputs"><input type="text" id="stockupdt"  required size="30" onsubmit="return false" /></div>
+	</div>
+	<div class="row">
+	<br>
+	<input type="button" id="updateprodbtn" style="float:right" value="Update" onclick="UpdateProduct();"/>
+	</div>
+	
+	</div>
+</form>
+</article>
+
+
+<footer>
+    <p>___________</p>
+    <a href="contact">Contacts Us</a>
+    <br>
+    <a href="about">About Us</a>
+    <br>
+    <a href="help">Help</a>
+    <p>___________</p>
+</footer>
+
+<script src="js/login.js"></script>
+<script src="js/product.js"></script>
+<script src="js/search.js"></script>
+<script src="js/phone.js"></script>
+<script src="js/spa.js"></script>
+<script src="js/cookie.js"></script>
+<script src="js/signup.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/order.js"></script>
+
+</body>
+</html>
+
+
+
