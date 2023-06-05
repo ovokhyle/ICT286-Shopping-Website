@@ -33,5 +33,8 @@
   &nbsp;
   <img height="415" src="https://user-images.githubusercontent.com/52202605/197583645-3b550065-b6e2-436a-a75e-29b3f4c21e00.png">
 </div>
+<div align="center">
+  <img width="815" alt="image" src="https://github.com/ovokhyle/ICT286-Shopping-Website/assets/52202605/89d3d055-ee04-4976-bfcd-d206b2580900">
+</div>
 
 
